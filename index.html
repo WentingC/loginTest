@@ -47,10 +47,10 @@
 
 		<span class="loginspan">
 			帐号<input type="text" id="userName" placeholder="输入你的帐号"/> 
-			<span></span><!-- 装一个√或×，提示是否输入正确 --> 
+			<span></span>
 			<br/> 
 			密码<input type="password" id="password" placeholder="输入你的密码"/>
-			<span></span><!-- 装一个√或×，提示是否输入正确 --> 
+			<span></span> 
 			<br /> 
 		</span> 
 		<input type="button" class="loginbtn" value="登 录" /> 
@@ -62,7 +62,7 @@
 				    // 用JQuery中的$.ajax函数(ajax如何将前端的数据传送入后台)
 					$.ajax({ 
 						'url':'https://www.ikgong.com:1000/Account/SignIn',
-						// 第一个参数url，PHP脚本的位置，我要把参数传到什么位置 
+						 
 						'data':{
 							"account":$('#userName').val(),
 							"password":$('#password').val(),
