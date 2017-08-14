@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;padding: 0;
+			font-family: '微软雅黑';
+		}
+		.login{
+			width: 300px;
+			height: 300px;
+			border: 1px solid #66CDAA;
+			margin: 20px auto;
+			text-align: center;
+		}
+		.loginTittle{
+			font-size: 30px;
+			line-height: 50px;
+			margin-bottom: 10px;
+		}
+		.loginspan{
+			display: block;
+			width: 100%;
+			height: 40%;
+			/*border: 1px solid green;*/
+			padding-top: 10px;
+		}
+		.loginspan input{
+			margin: 10px;
+			height: 30px;
+			padding-left:10px;
+		}
+		.loginbtn{
+			width: 80px;
+			height: 40px;
+			background-color: #66CDAA;
+			border-color: #66CDAA;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="login"> 
+		<p class="loginTittle">登 录</p> 
+
+		<span class="loginspan">
+			帐号<input type="text" id="userName" placeholder="输入你的帐号"/> 
+			<span></span><!-- 装一个√或×，提示是否输入正确 --> 
+			<br/> 
+			密码<input type="password" id="password" placeholder="输入你的密码"/>
+			<span></span><!-- 装一个√或×，提示是否输入正确 --> 
+			<br /> 
+		</span> 
+		<input type="button" class="loginbtn" value="登 录" /> 
+	</div>
+	<script type="text/javascript" src='./jquery.min.js'></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			$('.loginbtn').on('click', function(event) {
+				    // 用JQuery中的$.ajax函数(ajax如何将前端的数据传送入后台)
+					$.ajax({ 
+						'url':'https://www.ikgong.com:1000/Account/SignIn',
+						// 第一个参数url，PHP脚本的位置，我要把参数传到什么位置 
+						'data':{
+							"account":$('#userName').val(),
+							"password":$('#password').val(),
+						},
+						//传递什么数据，这里我用的是json格式 
+						'success':function(data){
+							//success表示，当服务器返回数据成功后，该做什么，返回的数据储存在data中，这里直接把data传入函数中。
+							if (data.success) {
+								window.open('https://www.baidu.com/');
+							}else{
+								alert('账户不存在');
+							}					 
+						},
+						'type':'post',
+						//type是ajax的方法，可以用post可以用get 
+						'dataType':'json',
+						//传递的数据类型，对应我上面的数据格式，这里用json。数据类型也可以是html/xml等 
+					});
+			});
+
+		}
+
+		
+	</script>
+</body>
+</html>
